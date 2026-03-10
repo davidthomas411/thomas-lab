@@ -14,6 +14,15 @@ export interface Publication {
 export const publications: Publication[] = [
   // Recent publications first
   {
+    title: "Radiation induced vaporization of exoskeletal droplets as potential x-ray acoustic contrast agents",
+    authors: "Eldib ME, Frantz WN, Borden MA, Lanning R, Miften M, Thomas DH",
+    journal: "Medical Physics",
+    year: "2025",
+    volume: "52",
+    pages: "e18017",
+    tags: ["X-ray Acoustic Imaging", "Contrast Agents", "Dosimetry"],
+  },
+  {
     title:
       "2D antiscatter grid and scatter sampling based CBCT method for online dose calculations during CBCT guided radiation therapy of pelvis",
     authors: "F Bayat, B Miller, Y Park, Z Yu, T Alexeev, D Thomas, K Stuhr, M Miften, C Altunbas",

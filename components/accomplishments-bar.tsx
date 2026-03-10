@@ -2,6 +2,13 @@
 
 import { useState, useRef, useEffect } from "react"
 import { ChevronLeft, ChevronRight, Award, FileText, DollarSign, Calendar } from "lucide-react"
+import FaceTracker from "@/components/face-tracker"
+
+interface RelatedPerson {
+  name: string
+  blobFaceId: string
+  fallbackImage?: string
+}
 
 interface Accomplishment {
   id: string
@@ -10,6 +17,7 @@ interface Accomplishment {
   icon: "award" | "conference" | "funding" | "research"
   color: string
   description: string
+  relatedPeople?: RelatedPerson[]
 }
 
 export default function AccomplishmentsBar() {
@@ -19,13 +27,27 @@ export default function AccomplishmentsBar() {
 
   const accomplishments: Accomplishment[] = [
     {
-      id: "research-as-art-2026",
-      title: "Research as Art 2026 recognition",
-      date: "February 2026",
-      icon: "award",
-      color: "category-red",
+      id: "varian-digital-twin-grant-funding-2026",
+      title: "Varian investigator-initiated grant funding awarded",
+      date: "March 2026",
+      icon: "funding",
+      color: "category-yellow",
       description:
-        "Recognized for a compelling visual entry in the 2026 Research as Art competition, highlighting the creative side of radiation therapy research.",
+        "Investigator-initiated funding from Varian (Siemens Healthineers) supports a new AI-driven patient digital twin project and brings total Thomas Lab funding to over $1M.",
+      relatedPeople: [
+        {
+          name: "Dr. David Thomas",
+          blobFaceId: "DT_1",
+          fallbackImage:
+            "https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/faces/DT_1/gaze_px0p0_py0p0_256.webp",
+        },
+        {
+          name: "Dr. Mohamed Yousuf",
+          blobFaceId: "MY_1",
+          fallbackImage:
+            "https://media.licdn.com/dms/image/v2/D5603AQG62ixS2V_pHw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719113565942?e=2147483647&v=beta&t=2erO9UGYkk0z6L2Lv1ja3bzMo1EIh3u3pwMMj4jBdeI",
+        },
+      ],
     },
     {
       id: "delaware-valley-aapm-young-investigators",
@@ -35,6 +57,31 @@ export default function AccomplishmentsBar() {
       color: "category-red",
       description:
         "Awarded second place at the Delaware Valley Chapter AAPM Young Investigators Symposium for a talk on computer vision for SGRT.",
+      relatedPeople: [
+        {
+          name: "Dr. Mohamed Yousuf",
+          blobFaceId: "MY_1",
+          fallbackImage:
+            "https://media.licdn.com/dms/image/v2/D5603AQG62ixS2V_pHw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719113565942?e=2147483647&v=beta&t=2erO9UGYkk0z6L2Lv1ja3bzMo1EIh3u3pwMMj4jBdeI",
+        },
+      ],
+    },
+    {
+      id: "research-as-art-2026",
+      title: "Research as Art 2026 recognition",
+      date: "February 2026",
+      icon: "award",
+      color: "category-red",
+      description:
+        "Recognized for a compelling visual entry in the 2026 Research as Art competition, highlighting the creative side of radiation therapy research.",
+      relatedPeople: [
+        {
+          name: "Dr. Mohamed Yousuf",
+          blobFaceId: "MY_1",
+          fallbackImage:
+            "https://media.licdn.com/dms/image/v2/D5603AQG62ixS2V_pHw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719113565942?e=2147483647&v=beta&t=2erO9UGYkk0z6L2Lv1ja3bzMo1EIh3u3pwMMj4jBdeI",
+        },
+      ],
     },
     {
       id: "welcome-mohamed-yousuf",
@@ -44,6 +91,14 @@ export default function AccomplishmentsBar() {
       color: "category-blue",
       description:
         "Dr. Mohamed Yousuf joined the Thomas Lab as a post-doctoral fellow to advance computer vision and surface-guided radiation therapy research.",
+      relatedPeople: [
+        {
+          name: "Dr. Mohamed Yousuf",
+          blobFaceId: "MY_1",
+          fallbackImage:
+            "https://media.licdn.com/dms/image/v2/D5603AQG62ixS2V_pHw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719113565942?e=2147483647&v=beta&t=2erO9UGYkk0z6L2Lv1ja3bzMo1EIh3u3pwMMj4jBdeI",
+        },
+      ],
     },
     {
       id: "best-in-physics",
@@ -53,6 +108,13 @@ export default function AccomplishmentsBar() {
       color: "category-red",
       description:
         "Awarded to the top 15 abstracts out of 2200+ submissions, placing in the top 1% of all research presented at the conference.",
+      relatedPeople: [
+        {
+          name: "Atharva Peshkar",
+          blobFaceId: "AP_1",
+          fallbackImage: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AP-1A8GH17Ky1dnNe2CSYI2FzabJvrQvK.png",
+        },
+      ],
     },
     {
       id: "aapm-2024-awards",
@@ -62,6 +124,18 @@ export default function AccomplishmentsBar() {
       color: "category-red",
       description:
         "Both researchers recognized for outstanding contributions in medical physics, with awards for innovation and excellence.",
+      relatedPeople: [
+        {
+          name: "Atharva Peshkar",
+          blobFaceId: "AP_1",
+          fallbackImage: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AP-1A8GH17Ky1dnNe2CSYI2FzabJvrQvK.png",
+        },
+        {
+          name: "Mohamed Eldib",
+          blobFaceId: "ME_1",
+          fallbackImage: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ME.jfif-vkIYgE4ftdYPYB1Cl9zck90u0oIZU9.jpeg",
+        },
+      ],
     },
     {
       id: "new-project-funding",
@@ -165,7 +239,7 @@ export default function AccomplishmentsBar() {
             <ChevronLeft className="h-6 w-6" />
           </button>
 
-          <div className="overflow-hidden relative" style={{ height: "280px" }}>
+          <div className="overflow-hidden relative" style={{ height: "340px" }}>
             <div className="h-full">
               {accomplishments.map((item, index) => (
                 <div
@@ -191,6 +265,25 @@ export default function AccomplishmentsBar() {
                       </div>
                       <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
                       <p className="text-gray-300">{item.description}</p>
+                      {item.relatedPeople && item.relatedPeople.length > 0 && (
+                        <div className="mt-5 flex flex-wrap gap-2">
+                          {item.relatedPeople.map((person) => (
+                            <div
+                              key={`${item.id}-${person.blobFaceId}`}
+                              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-2 py-1 border border-white/15"
+                            >
+                              <FaceTracker
+                                blobFaceId={person.blobFaceId}
+                                fallbackImage={person.fallbackImage}
+                                alt={person.name}
+                                size={28}
+                                className="rounded-full ring-1 ring-white/40"
+                              />
+                              <span className="text-xs text-gray-200">{person.name}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
                     </div>
                     <div className="mt-6">
                       <a href={`/news/${item.id}`} className="jefferson-outline-button">

@@ -10,11 +10,29 @@ interface NewsItem {
   date: string
 }
 
+function parseNewsDate(value: string): number {
+  const direct = Date.parse(value)
+  if (!Number.isNaN(direct)) return direct
+
+  const monthYearMatch = value.match(/^([A-Za-z]+)\s+(\d{4})$/)
+  if (monthYearMatch) {
+    const fallback = Date.parse(`${monthYearMatch[1]} 1, ${monthYearMatch[2]}`)
+    if (!Number.isNaN(fallback)) return fallback
+  }
+
+  return 0
+}
+
 export default function NewsTicker() {
   const [isPaused, setIsPaused] = useState(false)
   const tickerRef = useRef<HTMLDivElement>(null)
 
   const newsItems: NewsItem[] = [
+    {
+      id: "varian-digital-twin-grant-funding-2026",
+      title: "Varian funds new AI-driven patient digital twin project, bringing lab funding over $1M",
+      date: "March 2026",
+    },
     {
       id: "research-as-art-2026",
       title: "Dr. Mohamed Yousuf recognized in the 2026 Research as Art competition",
@@ -51,9 +69,10 @@ export default function NewsTicker() {
       date: "May 12, 2023",
     },
   ]
+  const sortedNewsItems = [...newsItems].sort((a, b) => parseNewsDate(b.date) - parseNewsDate(a.date))
 
   // Duplicate the items to create a seamless loop
-  const duplicatedItems = [...newsItems, ...newsItems]
+  const duplicatedItems = [...sortedNewsItems, ...sortedNewsItems]
 
   const togglePause = () => {
     setIsPaused(!isPaused)

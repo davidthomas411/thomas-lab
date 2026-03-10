@@ -4,8 +4,30 @@ import ScrollAnimation from "@/components/scroll-animation"
 import SiteLayout from "@/components/site-layout"
 import Link from "next/link"
 
+function parseNewsDate(value: string): number {
+  const direct = Date.parse(value)
+  if (!Number.isNaN(direct)) return direct
+
+  const monthYearMatch = value.match(/^([A-Za-z]+)\s+(\d{4})$/)
+  if (monthYearMatch) {
+    const fallback = Date.parse(`${monthYearMatch[1]} 1, ${monthYearMatch[2]}`)
+    if (!Number.isNaN(fallback)) return fallback
+  }
+
+  return 0
+}
+
 export default function NewsPage() {
   const newsItems = [
+    {
+      id: "varian-digital-twin-grant-funding-2026",
+      title: "Investigator-Initiated Varian Funding for AI Digital Twin Project",
+      date: "March 2026",
+      excerpt:
+        "The lab received investigator-initiated funding from Varian (Siemens Healthineers) for a new AI-driven digital twin project, bringing total lab funding to over $1M.",
+      image: "/placeholder.svg?height=400&width=600&text=Varian+Digital+Twin+Funding+2026",
+      category: "funding",
+    },
     {
       id: "research-as-art-2026",
       title: "Research as Art 2026 recognition",
@@ -95,6 +117,7 @@ export default function NewsPage() {
       category: "awards",
     },
   ]
+  const sortedNewsItems = [...newsItems].sort((a, b) => parseNewsDate(b.date) - parseNewsDate(a.date))
 
   return (
     <SiteLayout>
@@ -115,7 +138,7 @@ export default function NewsPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="aspect-square bg-jefferson-deepBlue/50 rounded-lg p-4 flex items-center justify-center text-center">
                   <div>
-                    <div className="text-3xl font-bold text-white">10+</div>
+                    <div className="text-3xl font-bold text-white">11+</div>
                     <div className="text-sm text-jefferson-brightBlue">News Updates</div>
                   </div>
                 </div>
@@ -133,7 +156,7 @@ export default function NewsPage() {
                 </div>
                 <div className="aspect-square bg-jefferson-deepBlue/50 rounded-lg p-4 flex items-center justify-center text-center">
                   <div>
-                    <div className="text-3xl font-bold text-white">1+</div>
+                    <div className="text-3xl font-bold text-white">2+</div>
                     <div className="text-sm text-jefferson-brightBlue">Funded Projects</div>
                   </div>
                 </div>
@@ -156,7 +179,7 @@ export default function NewsPage() {
             </ScrollAnimation>
           </div>
           <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
-            {newsItems.map((item, index) => (
+            {sortedNewsItems.map((item, index) => (
               <ScrollAnimation key={item.id} delay={(index % 3) as 1 | 2 | 3}>
                 <NewsCard
                   id={item.id}

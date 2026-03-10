@@ -47,6 +47,13 @@ export default function SearchDialog({ open, onOpenChange }: { open: boolean; on
       category: "Projects",
     },
     {
+      title: "Varian Funding for AI Digital Twin Project",
+      description:
+        "Investigator-initiated funding from Varian supports a new anatomy-aware SGRT digital twin project",
+      url: "/news/varian-digital-twin-grant-funding-2026",
+      category: "News",
+    },
+    {
       title: "Research as Art 2026 Recognition",
       description: "Dr. Mohamed Yousuf recognized in the 2026 Research as Art competition",
       url: "/news/research-as-art-2026",

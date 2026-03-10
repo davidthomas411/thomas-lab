@@ -11,24 +11,28 @@ export default function TeamPage() {
       name: "Dr. David Thomas, PhD, MS",
       role: "Associate Professor, Enterprise Director of Quality & Safety",
       description:
-        "Lab PI at the Bodine Center for Cancer Treatment, leading research combining AI and computer vision.",
+        "Lab PI leading translational AI, computer vision, and quality/safety innovation in radiation oncology.",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/DT-pZT10sennsexjbrxDbGFRAtrxEOD7P.webp",
+      profileUrl: "/team/david-thomas",
+      blobFaceId: "DT_1",
+      linkedinUrl: "https://www.linkedin.com/in/david-thomas-b0550b39",
+      githubUrl: "https://github.com/davidthomas411",
+      websiteUrl: "https://thomas-lab.com",
     },
     {
-      name: "Mohamed Eldib",
-      role: "Current Postdoctoral Fellow",
+      name: "Dr. Mohamed Yousuf",
+      role: "Postdoctoral Fellow",
       description:
-        "Postdoctoral fellow in the Department of Radiation Oncology at the University of Colorado since March 2021.",
+        "Postdoctoral Fellow developing AI-driven, marker-less 3D and digital twin methods for precision radiation oncology.",
       fullBio:
-        "Mohamed Eldib is a postdoctoral fellow in the Department of Radiation Oncology at the University of Colorado since March 2021. In 2011, he received his B.S. degree in Systems and Biomedical Engineering from Cairo University in Egypt. In 2019, he received his Ph.D. degree in Biomedical Engineering from Kyung Hee University in S. Korea with the best thesis award. He worked for the Radiological Sciences Dept. at the University of California (UCI) as a postdoctoral fellow, where his research focused on the development of X-Ray Induced Acoustic CT (XACT) and Proton Induced Acoustic Imaging (PAI) for radiological imaging and radiation oncology. Also, he has contributions in developing advanced algorithms for CT artifacts correction such as ring artifacts, motion artifacts, and metal artifacts, in addition, CT geometry calibration. His research at Anschutz Medical Campus focused on developing a 2D anti-scatter grid to improve CBCT images visualization without compromising the image features. Eldib's current research at David Thomas Lab focuses on developing a novel contrast agent for X-Ray Induced Acoustic CT (XACT) dosimetry, with the aim of providing real-time in-vivo 3D calibrated radiation dose measurements for adaptive radiation therapy treatments.",
-      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ME.jfif-vkIYgE4ftdYPYB1Cl9zck90u0oIZU9.jpeg",
-    },
-    {
-      name: "William Frantz",
-      role: "PhD Student",
-      description:
-        "First year Ph.D. student at the University of Colorado Boulder in the Biomedical Engineering Program.",
-      image: "/images/WillFranz.png",
+        "As a Postdoctoral Fellow in the Thomas Lab at Thomas Jefferson University, Dr. Mohamed Yousuf bridges complex engineering and practical clinical applications in medical data. He earned his Ph.D. in Electrical and Computer Engineering from the University of Louisville. His current research develops deep-learning tools for radiation oncology, including marker-less 3D modeling for SGRT, digital twin methods to track internal organ motion, and optimization strategies for VMAT workflows. He is a named investigator on a departmental grant and has been recognized with Thomas Jefferson University's 2026 Research as Art award and second place at the 2026 Delaware Valley Chapter AAPM Young Investigators Symposium.",
+      image:
+        "https://media.licdn.com/dms/image/v2/D5603AQG62ixS2V_pHw/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1719113565942?e=2147483647&v=beta&t=2erO9UGYkk0z6L2Lv1ja3bzMo1EIh3u3pwMMj4jBdeI",
+      profileUrl: "/team/mohamed-yousuf",
+      blobFaceId: "MY_1",
+      linkedinUrl: "https://www.linkedin.com/in/m7mdashraf/",
+      websiteUrl: "https://mohamedyousuf1.github.io/",
+      githubUrl: "https://github.com/mohamedyousuf1",
     },
     {
       name: "Atharva Peshkar",
@@ -38,28 +42,48 @@ export default function TeamPage() {
       fullBio:
         "Hi, I'm Atharva Peshkar, a first year PhD student in the Department of Computer Science at the University of Colorado Boulder. I'm working on a project focused on computer vision assisted alignment for stereotactic body radiation therapy (SBRT). This involves developing an Artificial Intelligence (AI) enhanced computer-vision (CV) patient setup technique to improve the accuracy of surface-guided RT (SGRT) for abdominal SBRT. Through my research, I aim to bring the power of computer vision into the realm of medicine, unlocking new possibilities for diagnosis and treatment. Outside the lab, you'll often find me exploring scenic hiking trails around Boulder and experimenting with flavors in the kitchen.",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AP-1A8GH17Ky1dnNe2CSYI2FzabJvrQvK.png",
+      blobFaceId: "AP_1",
+    },
+  ]
+
+  const previousMembers = [
+    {
+      name: "Mohamed Eldib",
+      role: "Previous Postdoctoral Fellow",
+      description:
+        "Postdoctoral fellow in the Department of Radiation Oncology at the University of Colorado since March 2021.",
+      image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ME.jfif-vkIYgE4ftdYPYB1Cl9zck90u0oIZU9.jpeg",
+      blobFaceId: "ME_1",
+    },
+    {
+      name: "William Frantz",
+      role: "PhD Student",
+      description:
+        "First year Ph.D. student at the University of Colorado Boulder in the Biomedical Engineering Program.",
+      image: "/images/WillFranz.png",
+      blobFaceId: "WF_1",
     },
     {
       name: "Brian Shaver",
       role: "Senior Bioengineering student",
       description: "Senior Bioengineering student in the BS/MS program at CU Denver",
       image: "/images/BrianShaver.png",
+      blobFaceId: "BS_1",
     },
-  ]
-
-  const previousMembers = [
     {
       name: "Farnoush Forghani-Arani, Ph.D.",
       role: "Previous Post doc",
       description:
         "Current Position: Medical Physics Resident, Washington University in St. Louis Now: Faculty Medical Physicist at Washington University in St. Louis.",
-      image: "/placeholder.svg?height=300&width=300&text=FF",
+      image: "/images/farnoush-forghani-arani.jpg",
+      blobFaceId: "FF_1",
     },
     {
       name: "Melton Parham",
       role: "PhD Student",
       description: "",
       image: "/placeholder.svg?height=300&width=300&text=MP",
+      blobFaceId: "MP_1",
     },
   ]
 
@@ -106,7 +130,7 @@ export default function TeamPage() {
               </p>
             </ScrollAnimation>
           </div>
-          <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
             {currentMembers.map((member, index) => (
               <ScrollAnimation key={index} delay={(index % 3) as 1 | 2 | 3}>
                 <TeamMember
@@ -115,6 +139,11 @@ export default function TeamPage() {
                   description={member.description}
                   fullBio={member.fullBio}
                   image={member.image}
+                  profileUrl={member.profileUrl}
+                  blobFaceId={member.blobFaceId}
+                  linkedinUrl={member.linkedinUrl}
+                  websiteUrl={member.websiteUrl}
+                  githubUrl={member.githubUrl}
                 />
               </ScrollAnimation>
             ))}
@@ -142,6 +171,7 @@ export default function TeamPage() {
                   role={member.role}
                   description={member.description}
                   image={member.image}
+                  blobFaceId={member.blobFaceId}
                 />
               </ScrollAnimation>
             ))}

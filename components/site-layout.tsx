@@ -3,21 +3,35 @@
 import type React from "react"
 
 import Link from "next/link"
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { usePathname } from "next/navigation"
 import { Github, Mail, Menu, X, Search, Sun, Moon } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import TJULogo from "@/components/tju-logo"
+import VideoPlayer from "@/components/video-player"
 import BackToTop from "@/components/back-to-top"
 import PageTransition from "@/components/page-transition"
 import Breadcrumb from "@/components/breadcrumb"
 import SearchDialog from "@/components/search-dialog"
 import CookieConsent from "@/components/cookie-consent"
 import { useTheme } from "next-themes"
+import ParticleBackground from "@/components/particle-background"
 
 interface SiteLayoutProps {
   children: React.ReactNode
 }
+
+const topBannerVideoUrl =
+  "https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/gaussian%20with%20alexix_Tr%20only.mp4"
+
+const VideoFallback = () => (
+  <div className="aspect-video overflow-hidden rounded-xl border border-white/10 bg-jefferson-deepBlue/50 flex items-center justify-center">
+    <div className="animate-pulse flex flex-col items-center">
+      <div className="h-10 w-10 rounded-full bg-white/20"></div>
+      <div className="mt-2 text-white/70 text-sm">Loading video...</div>
+    </div>
+  </div>
+)
 
 export default function SiteLayout({ children }: SiteLayoutProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -28,11 +42,15 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
 
   const isHomePage = pathname === "/"
   const isActive = (path: string) => pathname === path || pathname.startsWith(`${path}/`)
+  const desktopNavClass = (active = false) =>
+    `relative text-lg font-medium transition-all duration-300 after:absolute after:left-0 after:-bottom-1 after:h-0.5 after:bg-jefferson-brightBlue after:transition-all after:duration-300 ${
+      active ? "text-jefferson-brightBlue after:w-full" : "text-white hover:text-jefferson-brightBlue after:w-0 hover:after:w-full"
+    }`
 
   // Handle scroll events for header styling
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      if (window.scrollY > 50) {
         setScrolled(true)
       } else {
         setScrolled(false)
@@ -40,6 +58,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
     }
 
     window.addEventListener("scroll", handleScroll)
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
@@ -69,72 +88,45 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
       </a>
 
       <header
-        className={`sticky top-0 z-50 w-full border-b border-white/10 bg-jefferson-deepBlue backdrop-blur supports-[backdrop-filter]:bg-jefferson-deepBlue/95 jefferson-clean-bg transition-all duration-300 ${scrolled ? "shadow-md" : ""}`}
+        className={`sticky top-0 z-50 w-full border-b border-white/10 jefferson-clean-bg transition-all duration-300 ${
+          scrolled ? "bg-jefferson-deepBlue/95 backdrop-blur-md shadow-lg" : "bg-jefferson-deepBlue shadow-md"
+        }`}
       >
-        <div className="container flex h-16 sm:h-20 md:h-24 items-center justify-between">
-          <TJULogo />
-          <nav className="hidden md:flex gap-6">
+        <div
+          className={`container flex items-center justify-between transition-all duration-300 ${
+            scrolled ? "h-14 sm:h-16 md:h-20" : "h-16 sm:h-20 md:h-24"
+          }`}
+        >
+          <TJULogo isScrolled={scrolled} />
+          <nav className="hidden md:flex gap-6 items-center">
             {isHomePage ? (
-              <a
-                href="#overview"
-                className="text-lg font-medium text-white hover:text-jefferson-brightBlue transition-colors"
-              >
+              <a href="#overview" className={desktopNavClass(true)}>
                 Overview
               </a>
             ) : (
-              <Link
-                href="/#overview"
-                className="text-lg font-medium text-white hover:text-jefferson-brightBlue transition-colors"
-              >
+              <Link href="/#overview" className={desktopNavClass(false)}>
                 Overview
               </Link>
             )}
-            <Link
-              href="/projects"
-              className={`text-lg font-medium transition-colors ${
-                isActive("/projects") ? "text-jefferson-brightBlue" : "text-white hover:text-jefferson-brightBlue"
-              }`}
-            >
+            <Link href="/projects" className={desktopNavClass(isActive("/projects"))}>
               Projects
             </Link>
-            <Link
-              href="/team"
-              className={`text-lg font-medium transition-colors ${
-                isActive("/team") ? "text-jefferson-brightBlue" : "text-white hover:text-jefferson-brightBlue"
-              }`}
-            >
+            <Link href="/team" className={desktopNavClass(isActive("/team"))}>
               Team
             </Link>
-            <Link
-              href="/publications"
-              className={`text-lg font-medium transition-colors ${
-                isActive("/publications") ? "text-jefferson-brightBlue" : "text-white hover:text-jefferson-brightBlue"
-              }`}
-            >
+            <Link href="/publications" className={desktopNavClass(isActive("/publications"))}>
               Publications
             </Link>
-            <Link
-              href="/news"
-              className={`text-lg font-medium transition-colors ${
-                isActive("/news") ? "text-jefferson-brightBlue" : "text-white hover:text-jefferson-brightBlue"
-              }`}
-            >
+            <Link href="/presentations" className={desktopNavClass(isActive("/presentations"))}>
+              Presentations
+            </Link>
+            <Link href="/news" className={desktopNavClass(isActive("/news"))}>
               News
             </Link>
-            <Link
-              href="/3d-viewer"
-              className={`text-lg font-medium transition-colors ${
-                isActive("/3d-viewer") ? "text-jefferson-brightBlue" : "text-white hover:text-jefferson-brightBlue"
-              }`}
-            >
+            <Link href="/3d-viewer" className={desktopNavClass(isActive("/3d-viewer"))}>
               3D Viewer
             </Link>
-            <Link
-              href="/tech-stack"
-              className={`text-lg font-medium transition-colors ${
-                isActive("/tech-stack") ? "text-jefferson-brightBlue" : "text-white hover:text-jefferson-brightBlue"
-              }`}
-            >
+            <Link href="/tech-stack" className={desktopNavClass(isActive("/tech-stack"))}>
               Tech Stack
             </Link>
           </nav>
@@ -254,6 +246,17 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
                 News
               </Link>
               <Link
+                href="/presentations"
+                className={`text-lg font-medium transition-colors py-2 ${
+                  isActive("/presentations")
+                    ? "text-jefferson-brightBlue"
+                    : "text-white hover:text-jefferson-brightBlue"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Presentations
+              </Link>
+              <Link
                 href="/3d-viewer"
                 className={`text-lg font-medium transition-colors py-2 ${
                   isActive("/3d-viewer") ? "text-jefferson-brightBlue" : "text-white hover:text-jefferson-brightBlue"
@@ -289,11 +292,33 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
         )}
       </header>
 
-      <main id="main-content" className="flex-1">
-        <div className="container px-4 md:px-6 pt-4">
-          <Breadcrumb />
+      <section className="w-full py-6 md:py-10 bg-jefferson-deepBlue text-white jefferson-clean-bg border-b border-white/10">
+        <div className="container px-4 md:px-6">
+          <div className="mx-auto w-full max-w-6xl">
+            <Suspense fallback={<VideoFallback />}>
+              <VideoPlayer src={topBannerVideoUrl} />
+            </Suspense>
+          </div>
         </div>
-        <PageTransition>{children}</PageTransition>
+      </section>
+
+      <main id="main-content" className="relative flex-1 overflow-hidden">
+        <div className="pointer-events-none fixed inset-0 z-0">
+          <ParticleBackground
+            colorScheme="isodose"
+            opacity={0.34}
+            interactive={false}
+            enableRadiation
+            radiationInterval={6000}
+            backgroundColor="#f6f8fb"
+          />
+        </div>
+        <div className="relative z-10">
+          <div className="container px-4 md:px-6 pt-4">
+            <Breadcrumb />
+          </div>
+          <PageTransition>{children}</PageTransition>
+        </div>
       </main>
 
       <footer className="w-full border-t py-12 bg-jefferson-deepBlue text-white jefferson-clean-bg">
@@ -350,6 +375,11 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
                     News
                   </Link>
                 </li>
+                <li>
+                  <Link href="/presentations" className="text-gray-300 hover:text-white transition-colors">
+                    Presentations
+                  </Link>
+                </li>
               </ul>
             </div>
 
@@ -369,6 +399,11 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
                 <li>
                   <Link href="/publications" className="text-gray-300 hover:text-white transition-colors">
                     Publications
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/presentations" className="text-gray-300 hover:text-white transition-colors">
+                    Presentations
                   </Link>
                 </li>
                 <li>

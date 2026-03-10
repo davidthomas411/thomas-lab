@@ -1,20 +1,45 @@
 import Link from "next/link"
 import Image from "next/image"
 
-export default function TJULogo() {
+interface TJULogoProps {
+  className?: string
+  isScrolled?: boolean
+}
+
+export default function TJULogo({ className = "", isScrolled = false }: TJULogoProps) {
   return (
-    <Link href="/" className="flex items-center">
-      <div className="flex items-center">
-        <Image
-          src="/images/tju-logo-full.png"
-          alt="Thomas Jefferson University"
-          width={120}
-          height={40}
-          className="w-auto h-8 sm:h-10 md:h-12"
-          priority
-        />
-        <span className="text-base sm:text-xl md:text-2xl font-bold text-white ml-2">Thomas Lab</span>
-      </div>
-    </Link>
+    <div className={`flex items-center ${className}`}>
+      <Link href="/" className="flex items-center group relative">
+        <div
+          className={`relative h-11 sm:h-12 overflow-hidden transition-all duration-500 ease-out ${
+            isScrolled ? "w-0 opacity-0 -translate-x-3" : "w-[220px] sm:w-[280px] opacity-100 translate-x-0"
+          }`}
+        >
+          <Image
+            src="/images/tju-logo-full.png"
+            alt="Thomas Jefferson University"
+            fill
+            className="object-contain object-left"
+            priority
+            sizes="280px"
+          />
+        </div>
+
+        <div
+          className={`relative overflow-hidden transition-all duration-500 ease-out ${
+            isScrolled ? "w-10 h-10 sm:w-12 sm:h-12 opacity-100 translate-x-0" : "w-0 h-0 opacity-0 translate-x-3"
+          }`}
+        >
+          <Image
+            src="/images/jefferson-j-logo.svg"
+            alt="Jefferson University"
+            fill
+            className="object-contain"
+            priority
+            sizes="48px"
+          />
+        </div>
+      </Link>
+    </div>
   )
 }
