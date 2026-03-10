@@ -83,7 +83,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
             scrolled ? "h-14 sm:h-16 md:h-20" : "h-16 sm:h-20 md:h-24"
           }`}
         >
-          <TJULogo />
+          <TJULogo isScrolled={scrolled} />
           <nav className="hidden md:flex gap-6 items-center">
             {isHomePage ? (
               <a href="#overview" className={desktopNavClass(true)}>
