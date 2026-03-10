@@ -21,6 +21,9 @@ const VideoFallback = () => (
 )
 
 export default function Home() {
+  // New top hero video (added, existing hero video remains below)
+  const topHeroVideoUrl =
+    "https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/gaussian%20with%20alexix_Tr%20only.mp4"
   // Use the new v02_view4 for the hero as requested
   const heroVideoUrl = "https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/v02_view4.mp4"
   // Combined video for the multi-view demonstration
@@ -28,6 +31,16 @@ export default function Home() {
 
   return (
     <SiteLayout>
+      <section className="w-full py-6 md:py-10 bg-jefferson-deepBlue text-white jefferson-clean-bg border-b border-white/10">
+        <div className="container px-4 md:px-6">
+          <ScrollAnimation className="mx-auto w-full max-w-6xl">
+            <Suspense fallback={<VideoFallback />}>
+              <VideoPlayer src={topHeroVideoUrl} />
+            </Suspense>
+          </ScrollAnimation>
+        </div>
+      </section>
+
       <section className="w-full py-8 md:py-24 lg:py-32 bg-jefferson-deepBlue text-white jefferson-clean-bg">
         <div className="container px-4 md:px-6">
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center">
