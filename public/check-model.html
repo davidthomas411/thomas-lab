@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Check 3D Model</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h1 {
+      color: #333;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: #f9f9f9;
+    }
+    .status {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .success {
+      color: green;
+    }
+    .error {
+      color: red;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    pre {
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 4px;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>3D Model File Check</h1>
+  
+  <div class="card">
+    <h2>Model File Status</h2>
+    <p>This page checks if the 3D model file exists and is accessible.</p>
+    <p>Expected model path: <code id="modelPath">/scene.glb</code></p>
+    <div class="status" id="status">Checking...</div>
+    <button onclick="checkModel()">Check Again</button>
+  </div>
+  
+  <div class="card">
+    <h2>Troubleshooting</h2>
+    <p>If the model file is not found, try the following:</p>
+    <ol>
+      <li>Make sure the file exists in the <code>public</code> folder</li>
+      <li>Check that the filename and path are correct</li>
+      <li>Verify that the file has the correct permissions</li>
+      <li>Check the browser console for any CORS or security errors</li>
+    </ol>
+  </div>
+  
+  <div class="card">
+    <h2>Response Details</h2>
+    <pre id="details">No data yet</pre>
+  </div>
+  
+  <script>
+    function checkModel() {
+      const modelUrl = '/scene.glb';
+      document.getElementById('status').textContent = 'Checking...';
+      document.getElementById('status').className = '';
+      document.getElementById('details').textContent = 'Fetching...';
+      
+      fetch(modelUrl)
+        .then(response => {
+          const details = {
+            status: response.status,
+            statusText: response.statusText,
+            headers: {},
+            url: response.url
+          };
+          
+          // Convert headers to object
+          for (const [key, value] of response.headers.entries()) {
+            details.headers[key] = value;
+          }
+          
+          document.getElementById('details').textContent = JSON.stringify(details, null, 2);
+          
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.blob();
+        })
+        .then(blob => {
+          const fileSizeMB = (blob.size / 1024 / 1024).toFixed(2);
+          document.getElementById('status').textContent = `Success! File exists (${fileSizeMB} MB)`;
+          document.getElementById('status').className = 'success';
+        })
+        .catch(error => {
+          document.getElementById('status').textContent = `Error: ${error.message}`;
+          document.getElementById('status').className = 'error';
+        });
+    }
+    
+    // Run check on page load
+    window.onload = checkModel;
+  </script>
+</body>
+</html>

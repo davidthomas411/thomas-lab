@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direct Video Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .video-container {
+            margin-bottom: 30px;
+        }
+        video {
+            max-width: 100%;
+            border: 1px solid #ddd;
+        }
+        .info {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .error {
+            color: #721c24;
+            background-color: #f8d7da;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        button:hover {
+            background-color: #0069d9;
+        }
+        .controls {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Direct Video Test</h1>
+    
+    <div class="info">
+        <p>This page tests video playback directly without any framework or complex code. If videos play here but not in your application, the issue is likely with your application code rather than the video files themselves.</p>
+    </div>
+    
+    <div class="controls">
+        <button id="testAll">Test All Videos</button>
+    </div>
+    
+    <div id="videoContainers"></div>
+    
+    <script>
+        // List of video URLs to test
+        const videoUrls = [
+            "https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view1.mp4",
+            "https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view2.mp4",
+            "https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view3.mp4",
+            "https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view4.mp4"
+        ];
+        
+        const videoContainers = document.getElementById('videoContainers');
+        
+        // Create video elements
+        videoUrls.forEach((url, index) => {
+            const container = document.createElement('div');
+            container.className = 'video-container';
+            
+            const title = document.createElement('h2');
+            title.textContent = `Video ${index + 1}`;
+            
+            const urlDisplay = document.createElement('p');
+            urlDisplay.textContent = url;
+            
+            const video = document.createElement('video');
+            video.controls = true;
+            video.width = 640;
+            video.height = 360;
+            video.id = `video-${index}`;
+            
+            const source = document.createElement('source');
+            source.src = url;
+            source.type = 'video/mp4';
+            
+            const errorDisplay = document.createElement('div');
+            errorDisplay.className = 'error';
+            errorDisplay.style.display = 'none';
+            errorDisplay.id = `error-${index}`;
+            
+            video.appendChild(source);
+            container.appendChild(title);
+            container.appendChild(urlDisplay);
+            container.appendChild(video);
+            container.appendChild(errorDisplay);
+            
+            videoContainers.appendChild(container);
+            
+            // Add event listeners
+            video.addEventListener('error', (e) => {
+                const errorElement = document.getElementById(`error-${index}`);
+                let errorMessage = 'Unknown error';
+                
+                if (video.error) {
+                    switch (video.error.code) {
+                        case 1:
+                            errorMessage = 'MEDIA_ERR_ABORTED: The fetching process was aborted by the user';
+                            break;
+                        case 2:
+                            errorMessage = 'MEDIA_ERR_NETWORK: A network error caused the video download to fail';
+                            break;
+                        case 3:
+                            errorMessage = 'MEDIA_ERR_DECODE: The video playback was aborted due to a corruption problem or because the video used features your browser did not support';
+                            break;
+                        case 4:
+                            errorMessage = 'MEDIA_ERR_SRC_NOT_SUPPORTED: The video could not be loaded, either because the server or network failed or because the format is not supported';
+                            break;
+                        default:
+                            errorMessage = `Unknown error (${video.error.code}): ${video.error.message}`;
+                    }
+                }
+                
+                errorElement.textContent = `Error: ${errorMessage}`;
+                errorElement.style.display = 'block';
+                
+                console.error(`Video ${index + 1} error:`, {
+                    url,
+                    errorCode: video.error ? video.error.code : 'unknown',
+                    errorMessage,
+                    readyState: video.readyState,
+                    networkState: video.networkState
+                });
+            });
+            
+            video.addEventListener('loadeddata', () => {
+                console.log(`Video ${index + 1} loaded successfully`);
+            });
+        });
+        
+        // Test all videos button
+        document.getElementById('testAll').addEventListener('click', () => {
+            videoUrls.forEach((_, index) => {
+                const video = document.getElementById(`video-${index}`);
+                if (video) {
+                    video.load();
+                    video.play().catch(err => {
+                        console.error(`Failed to play video ${index + 1}:`, err);
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

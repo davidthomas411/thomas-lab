@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Downloader</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .video-list {
+            display: grid;
+            gap: 20px;
+        }
+        .video-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            background-color: #f9f9f9;
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .status {
+            margin-top: 10px;
+            font-style: italic;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Downloader</h1>
+    
+    <p>Use this tool to download videos directly from Vercel Blob Storage. This can help you verify if the videos are accessible and properly formatted.</p>
+    
+    <div class="video-list">
+        <div class="video-item">
+            <h3>View 1</h3>
+            <p>URL: https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view1.mp4</p>
+            <button onclick="downloadVideo('https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view1.mp4', 'view1.mp4')">Download</button>
+            <div id="status-view1" class="status"></div>
+        </div>
+        
+        <div class="video-item">
+            <h3>View  class="status"></div>
+        </div>
+        
+        <div class="video-item">
+            <h3>View 2</h3>
+            <p>URL: https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view2.mp4</p>
+            <button onclick="downloadVideo('https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view2.mp4', 'view2.mp4')">Download</button>
+            <div id="status-view2" class="status"></div>
+        </div>
+        
+        <div class="video-item">
+            <h3>View 3</h3>
+            <p>URL: https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view3.mp4</p>
+            <button onclick="downloadVideo('https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view3.mp4', 'view3.mp4')">Download</button>
+            <div id="status-view3" class="status"></div>
+        </div>
+        
+        <div class="video-item">
+            <h3>View 4</h3>
+            <p>URL: https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view4.mp4</p>
+            <button onclick="downloadVideo('https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view4.mp4', 'view4.mp4')">Download</button>
+            <div id="status-view4" class="status"></div>
+        </div>
+        
+        <div class="video-item">
+            <h3>V02 View 4</h3>
+            <p>URL: https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/v02_view4.mp4</p>
+            <button onclick="downloadVideo('https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/v02_view4.mp4', 'v02_view4.mp4')">Download</button>
+            <div id="status-v02_view4" class="status"></div>
+        </div>
+        
+        <div class="video-item">
+            <h3>Views 1-4</h3>
+            <p>URL: https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/views1-4.mp4</p>
+            <button onclick="downloadVideo('https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/views1-4.mp4', 'views1-4.mp4')">Download</button>
+            <div id="status-views1-4" class="status"></div>
+        </div>
+    </div>
+    
+    <script>
+        function downloadVideo(url, filename) {
+            const statusId = 'status-' + filename.split('.')[0];
+            const statusElement = document.getElementById(statusId);
+            
+            statusElement.textContent = 'Downloading...';
+            statusElement.className = 'status';
+            
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    
+                    statusElement.textContent = 'Download successful!';
+                    statusElement.className = 'status success';
+                })
+                .catch(error => {
+                    console.error('Error downloading video:', error);
+                    statusElement.textContent = `Error: ${error.message}`;
+                    statusElement.className = 'status error';
+                });
+        }
+    </script>
+</body>
+</html>

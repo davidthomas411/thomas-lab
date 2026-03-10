@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Video Test</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .video-container {
+      margin-bottom: 30px;
+    }
+    video {
+      max-width: 100%;
+      border: 1px solid #ccc;
+    }
+    h1 {
+      margin-bottom: 20px;
+    }
+    h2 {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Simple Video Test</h1>
+  <p>This page tests if videos can play directly without any framework or special configuration.</p>
+
+  <h2>Video 1</h2>
+  <div class="video-container">
+    <video controls autoplay muted loop>
+      <source src="https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view1.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <h2>Video 2</h2>
+  <div class="video-container">
+    <video controls autoplay muted loop>
+      <source src="https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view2.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <h2>Video 3</h2>
+  <div class="video-container">
+    <video controls autoplay muted loop>
+      <source src="https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view3.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <h2>Video 4</h2>
+  <div class="video-container">
+    <video controls autoplay muted loop>
+      <source src="https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/view4.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+  <script>
+    // Log any video errors
+    document.querySelectorAll('video').forEach(video => {
+      video.addEventListener('error', function(e) {
+        console.error('Video error:', e);
+        const container = this.parentElement;
+        const errorMsg = document.createElement('p');
+        errorMsg.style.color = 'red';
+        errorMsg.textContent = 'Error loading video';
+        container.appendChild(errorMsg);
+      });
+    });
+  </script>
+</body>
+</html>

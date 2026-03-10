@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Format Converter</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        h1, h2 {
+            margin-bottom: 20px;
+        }
+        .container {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        .info {
+            background-color: #d1ecf1;
+            border: 1px solid #bee5eb;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            color: #0c5460;
+        }
+        .steps {
+            margin-bottom: 30px;
+        }
+        .step {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            border-left: 3px solid #007bff;
+        }
+        code {
+            background-color: #f1f1f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Video Format Converter Guide</h1>
+    
+    <div class="info">
+        <p>This guide will help you convert your videos to formats that are widely supported by web browsers. If your videos aren't playing correctly, converting them to a more compatible format can often solve the issue.</p>
+    </div>
+    
+    <div class="container">
+        <h2>Option 1: Using FFmpeg (Recommended)</h2>
+        
+        <div class="steps">
+            <div class="step">
+                <h3>Step 1: Install FFmpeg</h3>
+                <p>FFmpeg is a powerful command-line tool for video conversion.</p>
+                <ul>
+                    <li><strong>Windows:</strong> Download from <a href="https://ffmpeg.org/download.html" target="_blank">ffmpeg.org</a> or install with <code>winget install ffmpeg</code></li>
+                    <li><strong>macOS:</strong> Install with Homebrew: <code>brew install ffmpeg</code></li>
+                    <li><strong>Linux:</strong> Use your package manager, e.g., <code>sudo apt install ffmpeg</code></li>
+                </ul>
+            </div>
+            
+            <div class="step">
+                <h3>Step 2: Convert to MP4 (H.264)</h3>
+                <p>This format has the best browser compatibility:</p>
+                <pre>ffmpeg -i input.mp4 -c:v libx264 -profile:v baseline -level 3.0 -pix_fmt yuv420p -c:a aac -movflags +faststart output.mp4</pre>
+            </div>
+            
+            <div class="step">
+                <h3>Step 3: Create WebM version (optional but recommended)</h3>
+                <p>WebM is well-supported in Chrome and Firefox:</p>
+                <pre>ffmpeg -i input.mp4 -c:v libvpx-vp9 -b:v 1M -c:a libopus output.webm</pre>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h2>Option 2: Using Online Converters</h2>
+        
+        <p>If you don't want to install software, you can use these online services:</p>
+        
+        <ul>
+            <li><a href="https://cloudconvert.com/video-converter" target="_blank">CloudConvert</a></li>
+            <li><a href="https://www.online-convert.com/" target="_blank">Online-Convert</a></li>
+            <li><a href="https://convertio.co/video-converter/" target="_blank">Convertio</a></li>
+        </ul>
+        
+        <p>When converting, use these settings:</p>
+        <ul>
+            <li>Format: MP4</li>
+            <li>Video Codec: H.264</li>
+            <li>Audio Codec: AAC</li>
+            <li>Resolution: Same as original or lower (720p is usually sufficient)</li>
+            <li>Bitrate: 1-2 Mbps for standard quality</li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <h2>Option 3: Recommended Video Settings</h2>
+        
+        <p>If you're creating videos from scratch, use these settings for maximum compatibility:</p>
+        
+        <ul>
+            <li><strong>Container:</strong> MP4</li>
+            <li><strong>Video Codec:</strong> H.264 (AVC)</li>
+            <li><strong>Audio Codec:</strong> AAC</li>
+            <li><strong>Profile:</strong> Baseline or Main</li>
+            <li><strong>Resolution:</strong> 1280x720 (720p) or 1920x1080 (1080p)</li>
+            <li><strong>Frame Rate:</strong> 30fps</li>
+            <li><strong>Pixel Format:</strong> YUV420P</li>
+            <li><strong>Bitrate:</strong> 2-5 Mbps depending on quality needs</li>
+        </ul>
+    </div>
+    
+    <div class="container">
+        <h2>Testing Your Converted Videos</h2>
+        
+        <p>After converting your videos:</p>
+        <ol>
+            <li>Upload them to your Vercel Blob Storage</li>
+            <li>Test them using the <a href="/direct-video-test.html">Direct Video Test</a> page</li>
+            <li>If they work there but not in your app, the issue is with your application code</li>
+        </ol>
+    </div>
+</body>
+</html>
