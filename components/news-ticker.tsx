@@ -16,29 +16,24 @@ export default function NewsTicker() {
 
   const newsItems: NewsItem[] = [
     {
-      id: "best-in-physics",
-      title: "Atharva Peshkar awarded 'BEST IN PHYSICS' at AAPM 2023",
-      date: "May 12, 2023",
+      id: "research-as-art-2026",
+      title: "Dr. Mohamed Yousuf recognized in the 2026 Research as Art competition",
+      date: "February 2026",
     },
     {
-      id: "aapm-2023-presentations",
-      title: "William Frantz and Atharva Peshkar to present at AAPM 2023",
-      date: "May 12, 2023",
+      id: "delaware-valley-aapm-young-investigators",
+      title: "Dr. Mohamed Yousuf wins second place at AAPM Young Investigators Symposium",
+      date: "March 2026",
     },
     {
-      id: "med-phys-slam",
-      title: "Atharva Peshkar wins first prize in AAPM Rocky Mountain Chapter 'Med Phys Slam'",
-      date: "June 22, 2023",
+      id: "welcome-mohamed-yousuf",
+      title: "Welcome Dr. Mohamed Yousuf to the Thomas Lab as a post-doctoral fellow",
+      date: "May 2025",
     },
     {
-      id: "aapm-2023-success",
-      title: "Successful presentations at AAPM 2023 in Houston",
-      date: "August 02, 2023",
-    },
-    {
-      id: "new-project-funding",
-      title: "Computer vision surface imaging breast DIBH project funded by CU Anschutz Cancer Center",
-      date: "October 16, 2023",
+      id: "aapm-2024-awards",
+      title: "Atharva Peshkar and Mohamed Eldib win awards for AAPM 2024",
+      date: "May 06, 2024",
     },
     {
       id: "benchmarking-trial",
@@ -46,9 +41,14 @@ export default function NewsTicker() {
       date: "February 03, 2024",
     },
     {
-      id: "aapm-2024-awards",
-      title: "Atharva Peshkar and Mohamed Eldib win awards for AAPM 2024",
-      date: "May 06, 2024",
+      id: "new-project-funding",
+      title: "Computer vision surface imaging breast DIBH project funded by CU Anschutz Cancer Center",
+      date: "October 16, 2023",
+    },
+    {
+      id: "best-in-physics",
+      title: "Atharva Peshkar awarded 'BEST IN PHYSICS' at AAPM 2023",
+      date: "May 12, 2023",
     },
   ]
 

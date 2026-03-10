@@ -9,6 +9,7 @@ interface Accomplishment {
   date: string
   icon: "award" | "conference" | "funding" | "research"
   color: string
+  description: string
 }
 
 export default function AccomplishmentsBar() {
@@ -18,11 +19,40 @@ export default function AccomplishmentsBar() {
 
   const accomplishments: Accomplishment[] = [
     {
+      id: "research-as-art-2026",
+      title: "Research as Art 2026 recognition",
+      date: "February 2026",
+      icon: "award",
+      color: "category-red",
+      description:
+        "Recognized for a compelling visual entry in the 2026 Research as Art competition, highlighting the creative side of radiation therapy research.",
+    },
+    {
+      id: "delaware-valley-aapm-young-investigators",
+      title: "Second place at AAPM Young Investigators Symposium",
+      date: "March 2026",
+      icon: "award",
+      color: "category-red",
+      description:
+        "Awarded second place at the Delaware Valley Chapter AAPM Young Investigators Symposium for a talk on computer vision for SGRT.",
+    },
+    {
+      id: "welcome-mohamed-yousuf",
+      title: "Welcome Dr. Mohamed Yousuf to the lab",
+      date: "May 2025",
+      icon: "conference",
+      color: "category-blue",
+      description:
+        "Dr. Mohamed Yousuf joined the Thomas Lab as a post-doctoral fellow to advance computer vision and surface-guided radiation therapy research.",
+    },
+    {
       id: "best-in-physics",
       title: "Best in Physics award at AAPM 2023",
       date: "May 12, 2023",
       icon: "award",
       color: "category-red",
+      description:
+        "Awarded to the top 15 abstracts out of 2200+ submissions, placing in the top 1% of all research presented at the conference.",
     },
     {
       id: "aapm-2024-awards",
@@ -30,6 +60,8 @@ export default function AccomplishmentsBar() {
       date: "May 06, 2024",
       icon: "award",
       color: "category-red",
+      description:
+        "Both researchers recognized for outstanding contributions in medical physics, with awards for innovation and excellence.",
     },
     {
       id: "new-project-funding",
@@ -37,20 +69,8 @@ export default function AccomplishmentsBar() {
       date: "October 16, 2023",
       icon: "funding",
       color: "category-yellow",
-    },
-    {
-      id: "med-phys-slam",
-      title: "First prize in AAPM Rocky Mountain Chapter 'Med Phys Slam'",
-      date: "June 22, 2023",
-      icon: "award",
-      color: "category-red",
-    },
-    {
-      id: "benchmarking-trial",
-      title: "Benchmarking trial begins for Computer Vision technique",
-      date: "February 03, 2024",
-      icon: "research",
-      color: "category-blue",
+      description:
+        "Secured funding for computer vision surface imaging breast DIBH project with very positive reviews from the Cancer Center.",
     },
   ]
 
@@ -170,17 +190,7 @@ export default function AccomplishmentsBar() {
                         </div>
                       </div>
                       <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
-                      <p className="text-gray-300">
-                        {item.id === "best-in-physics"
-                          ? "Awarded to the top 15 abstracts out of 2200+ submissions, placing in the top 1% of all research presented at the conference."
-                          : item.id === "aapm-2024-awards"
-                            ? "Both researchers recognized for outstanding contributions in medical physics, with awards for innovation and excellence."
-                            : item.id === "new-project-funding"
-                              ? "Secured funding for computer vision surface imaging breast DIBH project with very positive reviews from the Cancer Center."
-                              : item.id === "med-phys-slam"
-                                ? "Won first prize in the competition and represented the Rocky Mountain Chapter at the AAPM annual meeting in Houston."
-                                : "Started benchmarking our Computer Vision patient alignment technique against the current gold standard IR-marker motion tracking."}
-                      </p>
+                      <p className="text-gray-300">{item.description}</p>
                     </div>
                     <div className="mt-6">
                       <a href={`/news/${item.id}`} className="jefferson-outline-button">

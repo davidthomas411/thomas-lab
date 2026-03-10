@@ -47,6 +47,25 @@ export default function SearchDialog({ open, onOpenChange }: { open: boolean; on
       category: "Projects",
     },
     {
+      title: "Research as Art 2026 Recognition",
+      description: "Dr. Mohamed Yousuf recognized in the 2026 Research as Art competition",
+      url: "/news/research-as-art-2026",
+      category: "News",
+    },
+    {
+      title: "Second Place at AAPM Young Investigators Symposium",
+      description:
+        "Dr. Mohamed Yousuf earns second place at Delaware Valley Chapter AAPM Young Investigators Symposium",
+      url: "/news/delaware-valley-aapm-young-investigators",
+      category: "News",
+    },
+    {
+      title: "Welcome Dr. Mohamed Yousuf",
+      description: "Dr. Mohamed Yousuf joins the Thomas Lab as a post-doctoral fellow in May 2025",
+      url: "/news/welcome-mohamed-yousuf",
+      category: "News",
+    },
+    {
       title: "AAPM 2024 Awards",
       description: "Atharva Peshkar and Mohamed Eldib win awards for AAPM 2024",
       url: "/news/aapm-2024-awards",

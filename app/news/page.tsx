@@ -7,6 +7,33 @@ import Link from "next/link"
 export default function NewsPage() {
   const newsItems = [
     {
+      id: "research-as-art-2026",
+      title: "Research as Art 2026 recognition",
+      date: "February 2026",
+      excerpt:
+        "Dr. Mohamed Yousuf was recognized in the 2026 Research as Art competition for a creative visualization of radiation therapy research.",
+      image: "/placeholder.svg?height=400&width=600&text=Research+as+Art+2026",
+      category: "awards",
+    },
+    {
+      id: "delaware-valley-aapm-young-investigators",
+      title: "Second Place at AAPM Young Investigators Symposium",
+      date: "March 2026",
+      excerpt:
+        "Dr. Mohamed Yousuf earned second place at the Delaware Valley Chapter AAPM Young Investigators Symposium.",
+      image: "/placeholder.svg?height=400&width=600&text=Young+Investigators+Award",
+      category: "awards",
+    },
+    {
+      id: "welcome-mohamed-yousuf",
+      title: "Welcome Dr. Mohamed Yousuf to the lab",
+      date: "May 2025",
+      excerpt:
+        "We are excited to welcome Dr. Mohamed Yousuf as a post-doctoral fellow working with Dr. David Thomas.",
+      image: "/placeholder.svg?height=400&width=600&text=Welcome+Mohamed+Yousuf",
+      category: "research",
+    },
+    {
       id: "aapm-2024-awards",
       title: "AAPM 2024 Awards!",
       date: "May 06, 2024",
@@ -88,13 +115,13 @@ export default function NewsPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="aspect-square bg-jefferson-deepBlue/50 rounded-lg p-4 flex items-center justify-center text-center">
                   <div>
-                    <div className="text-3xl font-bold text-white">7+</div>
+                    <div className="text-3xl font-bold text-white">10+</div>
                     <div className="text-sm text-jefferson-brightBlue">News Updates</div>
                   </div>
                 </div>
                 <div className="aspect-square bg-jefferson-deepBlue/50 rounded-lg p-4 flex items-center justify-center text-center">
                   <div>
-                    <div className="text-3xl font-bold text-white">3+</div>
+                    <div className="text-3xl font-bold text-white">5+</div>
                     <div className="text-sm text-jefferson-brightBlue">Major Awards</div>
                   </div>
                 </div>
