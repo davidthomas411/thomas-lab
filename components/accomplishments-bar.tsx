@@ -147,6 +147,12 @@ export default function AccomplishmentsBar() {
         "Secured funding for computer vision surface imaging breast DIBH project with very positive reviews from the Cancer Center.",
     },
   ]
+  const activeItem = accomplishments[activeIndex]
+  const featuredPerson = activeItem.relatedPeople?.[0] ?? {
+    name: "Dr. David Thomas",
+    blobFaceId: "DT_1",
+    fallbackImage: "https://gruc9opbjll8ofcl.public.blob.vercel-storage.com/faces/DT_1/gaze_px0p0_py0p0_256.webp",
+  }
 
   const getIcon = (iconType: string) => {
     switch (iconType) {
@@ -230,79 +236,95 @@ export default function AccomplishmentsBar() {
           </a>
         </div>
 
-        <div className="relative">
-          <button
-            onClick={scrollLeft}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 transition-colors rounded-full p-2 text-white"
-            aria-label="Previous accomplishment"
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </button>
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_240px] gap-5 items-stretch">
+          <div className="relative">
+            <button
+              onClick={scrollLeft}
+              className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 transition-colors rounded-full p-2 text-white"
+              aria-label="Previous accomplishment"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
 
-          <div className="overflow-hidden relative" style={{ height: "340px" }}>
-            <div className="h-full">
-              {accomplishments.map((item, index) => (
-                <div
-                  key={item.id}
-                  className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
-                    index === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"
-                  }`}
-                >
-                  <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 h-full flex flex-col justify-between border border-white/10 mx-12">
-                    <div>
-                      <div className="flex items-center mb-4">
-                        <div
-                          className={`h-12 w-12 rounded-full ${getColor(item.color)} flex items-center justify-center`}
-                        >
-                          {getIcon(item.icon)}
-                        </div>
-                        <div className="ml-4">
-                          <div className="flex items-center text-gray-300 text-sm">
-                            <Calendar className="h-4 w-4 mr-2" />
-                            <span>{item.date}</span>
+            <div className="overflow-hidden relative" style={{ height: "340px" }}>
+              <div className="h-full">
+                {accomplishments.map((item, index) => (
+                  <div
+                    key={item.id}
+                    className={`absolute top-0 left-0 w-full h-full transition-opacity duration-1000 ${
+                      index === activeIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+                    }`}
+                  >
+                    <div className="bg-white/5 backdrop-blur-sm rounded-xl p-8 h-full flex flex-col justify-between border border-white/10 mx-12">
+                      <div>
+                        <div className="flex items-center mb-4">
+                          <div
+                            className={`h-12 w-12 rounded-full ${getColor(item.color)} flex items-center justify-center`}
+                          >
+                            {getIcon(item.icon)}
+                          </div>
+                          <div className="ml-4">
+                            <div className="flex items-center text-gray-300 text-sm">
+                              <Calendar className="h-4 w-4 mr-2" />
+                              <span>{item.date}</span>
+                            </div>
                           </div>
                         </div>
+                        <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
+                        <p className="text-gray-300">{item.description}</p>
+                        {item.relatedPeople && item.relatedPeople.length > 0 && (
+                          <div className="mt-5 flex flex-wrap gap-2">
+                            {item.relatedPeople.map((person) => (
+                              <div
+                                key={`${item.id}-${person.blobFaceId}`}
+                                className="inline-flex items-center gap-2 rounded-full bg-white/10 px-2 py-1 border border-white/15"
+                              >
+                                <FaceTracker
+                                  blobFaceId={person.blobFaceId}
+                                  fallbackImage={person.fallbackImage}
+                                  alt={person.name}
+                                  size={28}
+                                  className="rounded-full ring-1 ring-white/40"
+                                />
+                                <span className="text-xs text-gray-200">{person.name}</span>
+                              </div>
+                            ))}
+                          </div>
+                        )}
                       </div>
-                      <h3 className="text-2xl font-bold text-white mb-4">{item.title}</h3>
-                      <p className="text-gray-300">{item.description}</p>
-                      {item.relatedPeople && item.relatedPeople.length > 0 && (
-                        <div className="mt-5 flex flex-wrap gap-2">
-                          {item.relatedPeople.map((person) => (
-                            <div
-                              key={`${item.id}-${person.blobFaceId}`}
-                              className="inline-flex items-center gap-2 rounded-full bg-white/10 px-2 py-1 border border-white/15"
-                            >
-                              <FaceTracker
-                                blobFaceId={person.blobFaceId}
-                                fallbackImage={person.fallbackImage}
-                                alt={person.name}
-                                size={28}
-                                className="rounded-full ring-1 ring-white/40"
-                              />
-                              <span className="text-xs text-gray-200">{person.name}</span>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                    </div>
-                    <div className="mt-6">
-                      <a href={`/news/${item.id}`} className="jefferson-outline-button">
-                        Read Full Story
-                      </a>
+                      <div className="mt-6">
+                        <a href={`/news/${item.id}`} className="jefferson-outline-button">
+                          Read Full Story
+                        </a>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
+
+            <button
+              onClick={scrollRight}
+              className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 transition-colors rounded-full p-2 text-white"
+              aria-label="Next accomplishment"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
           </div>
 
-          <button
-            onClick={scrollRight}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/10 hover:bg-white/20 transition-colors rounded-full p-2 text-white"
-            aria-label="Next accomplishment"
-          >
-            <ChevronRight className="h-6 w-6" />
-          </button>
+          <div className="h-[340px] bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-4 flex flex-col items-center justify-center">
+            <FaceTracker
+              blobFaceId={featuredPerson.blobFaceId}
+              fallbackImage={featuredPerson.fallbackImage}
+              alt={featuredPerson.name}
+              size={180}
+              className="rounded-2xl ring-1 ring-white/25 shadow-md"
+            />
+            <div className="mt-3 text-center">
+              <div className="text-sm font-semibold text-white">{featuredPerson.name}</div>
+              <div className="text-xs text-gray-300">Featured in this update</div>
+            </div>
+          </div>
         </div>
 
         <div className="flex justify-center mt-6">

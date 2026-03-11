@@ -4,7 +4,7 @@ import { ArrowLeft, Mic, FileText } from "lucide-react"
 import SiteLayout from "@/components/site-layout"
 import ScrollAnimation from "@/components/scroll-animation"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { abstractPresentations, invitedLectures, presentationsSource } from "./presentations-data"
+import { abstractPresentations, invitedLectures } from "./presentations-data"
 
 export const metadata: Metadata = {
   title: "Presentations | Thomas Lab",
@@ -55,7 +55,6 @@ export default function PresentationsPage() {
                 Invited lectures and refereed abstracts from the Thomas Lab portfolio, including local, national,
                 international, and intramural talks.
               </p>
-              <p className="text-sm text-gray-300">Source document: {presentationsSource}</p>
               <Link href="/" className="jefferson-outline-button inline-flex">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Home
@@ -140,8 +139,7 @@ export default function PresentationsPage() {
               </h2>
             </div>
             <p className="max-w-[900px] leading-normal text-jefferson-slate sm:text-lg sm:leading-7">
-              Full list of refereed abstracts from the CV source document. Entries are grouped by detected year and
-              shown from newest to oldest.
+              Full list of refereed abstracts grouped by year and displayed from newest to oldest.
             </p>
           </ScrollAnimation>
 

@@ -7,7 +7,6 @@ import ScrollAnimation from "@/components/scroll-animation"
 import { Suspense } from "react"
 import SiteLayout from "@/components/site-layout"
 import PointCloudViewer from "@/components/point-cloud-viewer"
-import NewsletterSignup from "@/components/newsletter-signup"
 import Acknowledgments from "@/components/acknowledgments"
 
 // Loading fallback for video components
@@ -166,69 +165,6 @@ export default function Home() {
                 <Link href="/3d-viewer" className="jefferson-text-button">
                   View in full screen <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
-              </div>
-            </ScrollAnimation>
-          </div>
-        </div>
-      </section>
-
-      <section className="w-full py-12 md:py-24 bg-jefferson-silver/30">
-        <div className="container px-4 md:px-6">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-center">
-            <ScrollAnimation>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tighter md:text-4xl text-jefferson-deepBlue mb-6">
-                Stay Updated
-              </h2>
-              <p className="text-jefferson-slate mb-6">
-                Subscribe to our newsletter to receive the latest updates on our research, publications, and events. We
-                regularly share insights on radiation therapy innovations, computer vision applications, and more.
-              </p>
-              <div className="max-w-md">
-                <NewsletterSignup />
-              </div>
-            </ScrollAnimation>
-
-            <ScrollAnimation delay={1}>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-lg font-bold text-jefferson-deepBlue mb-2">Latest Publications</h3>
-                  <ul className="space-y-3">
-                    <li>
-                      <a href="#" className="text-jefferson-brightBlue hover:underline">
-                        Computer Vision for Patient Positioning in Radiation Therapy
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-jefferson-brightBlue hover:underline">
-                        Real-time Tracking of Internal Anatomy from Surface Motion
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#" className="text-jefferson-brightBlue hover:underline">
-                        Novel Contrast Agents for X-Ray Induced Acoustic CT
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-                <div className="bg-white p-6 rounded-lg shadow-md">
-                  <h3 className="text-lg font-bold text-jefferson-deepBlue mb-2">Upcoming Events</h3>
-                  <ul className="space-y-3">
-                    <li className="text-jefferson-slate">
-                      <span className="block text-jefferson-deepBlue font-medium">AAPM Annual Meeting</span>
-                      July 14-18, 2024
-                    </li>
-                    <li className="text-jefferson-slate">
-                      <span className="block text-jefferson-deepBlue font-medium">Research Symposium</span>
-                      September 5, 2024
-                    </li>
-                    <li className="text-jefferson-slate">
-                      <span className="block text-jefferson-deepBlue font-medium">
-                        Workshop: AI in Radiation Therapy
-                      </span>
-                      October 12, 2024
-                    </li>
-                  </ul>
-                </div>
               </div>
             </ScrollAnimation>
           </div>

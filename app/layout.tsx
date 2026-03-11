@@ -15,7 +15,6 @@ export const metadata: Metadata = {
   title: "Thomas Lab | Advanced Surface-Guided Radiation Therapy",
   description:
     "Transforming surface guided radiation therapy (SGRT) with low-cost RGB cameras and neural networks for real-time patient tracking and internal anatomy estimation.",
-  generator: "v0.dev",
   // Add more metadata for SEO
   keywords: "radiation therapy, SGRT, computer vision, medical physics, Thomas Jefferson University",
   authors: [{ name: "Thomas Lab", url: "https://thomas-lab.com" }],
@@ -78,7 +77,7 @@ export default function RootLayout({
                 addressRegion: "PA",
                 addressCountry: "US",
               },
-              sameAs: ["https://github.com/thomas-lab", "https://twitter.com/thomas_lab"],
+              sameAs: ["https://github.com/davidthomas411", "https://www.linkedin.com/in/david-thomas-b0550b39"],
             }),
           }}
         />

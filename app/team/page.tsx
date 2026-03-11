@@ -36,22 +36,23 @@ export default function TeamPage() {
     },
     {
       name: "Atharva Peshkar",
-      role: "PhD Student",
+      role: "PhD Student, University of Colorado Boulder",
       description:
-        "First year PhD student in the Department of Computer Science at the University of Colorado Boulder.",
+        "Researching AI-enhanced computer vision methods for patient alignment and surface-guided radiotherapy.",
       fullBio:
         "Hi, I'm Atharva Peshkar, a first year PhD student in the Department of Computer Science at the University of Colorado Boulder. I'm working on a project focused on computer vision assisted alignment for stereotactic body radiation therapy (SBRT). This involves developing an Artificial Intelligence (AI) enhanced computer-vision (CV) patient setup technique to improve the accuracy of surface-guided RT (SGRT) for abdominal SBRT. Through my research, I aim to bring the power of computer vision into the realm of medicine, unlocking new possibilities for diagnosis and treatment. Outside the lab, you'll often find me exploring scenic hiking trails around Boulder and experimenting with flavors in the kitchen.",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/AP-1A8GH17Ky1dnNe2CSYI2FzabJvrQvK.png",
       blobFaceId: "AP_1",
+      profileUrl: "/team/atharva-peshkar",
     },
   ]
 
   const previousMembers = [
     {
       name: "Mohamed Eldib",
-      role: "Previous Postdoctoral Fellow",
+      role: "Former Postdoctoral Fellow",
       description:
-        "Postdoctoral fellow in the Department of Radiation Oncology at the University of Colorado since March 2021.",
+        "Contributed to translational medical physics research and AI-enabled radiation oncology projects.",
       image: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ME.jfif-vkIYgE4ftdYPYB1Cl9zck90u0oIZU9.jpeg",
       blobFaceId: "ME_1",
     },
@@ -72,16 +73,16 @@ export default function TeamPage() {
     },
     {
       name: "Farnoush Forghani-Arani, Ph.D.",
-      role: "Previous Post doc",
+      role: "Former Postdoctoral Fellow",
       description:
-        "Current Position: Medical Physics Resident, Washington University in St. Louis Now: Faculty Medical Physicist at Washington University in St. Louis.",
+        "Now Faculty Medical Physicist at Washington University in St. Louis; previously a medical physics resident there.",
       image: "/images/farnoush-forghani-arani.jpg",
       blobFaceId: "FF_1",
     },
     {
       name: "Melton Parham",
-      role: "PhD Student",
-      description: "",
+      role: "Former PhD Student",
+      description: "Contributed to collaborative lab research projects.",
       image: "/placeholder.svg?height=300&width=300&text=MP",
       blobFaceId: "MP_1",
     },

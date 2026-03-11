@@ -15,6 +15,7 @@ import {
 } from "lucide-react"
 import SiteLayout from "@/components/site-layout"
 import ScrollAnimation from "@/components/scroll-animation"
+import FaceTracker from "@/components/face-tracker"
 
 const linkedInProfileUrl = "https://www.linkedin.com/in/david-thomas-b0550b39"
 const githubProfileUrl = "https://github.com/davidthomas411"
@@ -82,8 +83,14 @@ export default function DavidThomasPage() {
         <div className="container px-4 md:px-6">
           <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12 items-start">
             <ScrollAnimation className="space-y-4">
-              <div className="aspect-square overflow-hidden rounded-xl border border-white/10 bg-jefferson-deepBlue/40">
-                <img src={profileImageUrl} alt="Dr. David Thomas" className="h-full w-full object-cover" />
+              <div className="flex justify-center lg:justify-start">
+                <FaceTracker
+                  blobFaceId="DT_1"
+                  fallbackImage={profileImageUrl}
+                  alt="Dr. David Thomas"
+                  size={280}
+                  className="rounded-xl border border-white/10 bg-jefferson-deepBlue/40"
+                />
               </div>
               <div className="space-y-2">
                 <a
@@ -154,7 +161,9 @@ export default function DavidThomasPage() {
                 </div>
                 <div className="ml-4">
                   <h2 className="text-xl font-bold text-jefferson-deepBlue m-0">Curriculum Vitae Overview</h2>
-                  <p className="text-jefferson-slate m-0">Built from CV: CURRICULUM VITAE TJFormat - DThomas_2026-03-03.pdf</p>
+                  <p className="text-jefferson-slate m-0">
+                    Professional profile, academic appointments, and selected contributions.
+                  </p>
                 </div>
               </div>
             </ScrollAnimation>

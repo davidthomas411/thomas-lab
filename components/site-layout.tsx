@@ -145,7 +145,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
               className="border-white/20 text-jefferson-brightBlue hover:bg-white/10 hover:text-white transition-colors"
               asChild
             >
-              <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <Link href="https://github.com/davidthomas411" target="_blank" rel="noopener noreferrer">
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
@@ -156,7 +156,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
               className="border-white/20 text-jefferson-brightBlue hover:bg-white/10 hover:text-white transition-colors"
               asChild
             >
-              <Link href="mailto:contact@thomas-lab.com">
+              <Link href="mailto:david.thomas2@jefferson.edu">
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
               </Link>
@@ -296,7 +296,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
               </p>
               <div className="flex space-x-4 mt-6">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/davidthomas411"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-300 hover:text-white"
@@ -304,7 +304,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
                   <Github className="h-6 w-6" />
                   <span className="sr-only">GitHub</span>
                 </a>
-                <a href="mailto:contact@thomas-lab.com" className="text-gray-300 hover:text-white">
+                <a href="mailto:david.thomas2@jefferson.edu" className="text-gray-300 hover:text-white">
                   <Mail className="h-6 w-6" />
                   <span className="sr-only">Email</span>
                 </a>
@@ -385,17 +385,7 @@ export default function SiteLayout({ children }: SiteLayoutProps) {
                 <p className="text-sm text-gray-300">
                   © {new Date().getFullYear()} Thomas Lab | Jefferson Radiation Oncology
                 </p>
-                <div className="flex gap-4 mt-2">
-                  <Link href="#" className="text-xs text-gray-400 hover:text-white transition-colors">
-                    Privacy Policy
-                  </Link>
-                  <Link href="#" className="text-xs text-gray-400 hover:text-white transition-colors">
-                    Terms of Service
-                  </Link>
-                  <Link href="#" className="text-xs text-gray-400 hover:text-white transition-colors">
-                    Accessibility
-                  </Link>
-                </div>
+                <p className="mt-2 text-xs text-gray-400">Privacy, accessibility, and usage policies available upon request.</p>
               </div>
 
               <div className="md:text-right">

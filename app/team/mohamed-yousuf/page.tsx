@@ -2,6 +2,7 @@ import Link from "next/link"
 import { ArrowLeft, ExternalLink, User, Globe, Github } from "lucide-react"
 import SiteLayout from "@/components/site-layout"
 import ScrollAnimation from "@/components/scroll-animation"
+import FaceTracker from "@/components/face-tracker"
 
 const linkedInProfileUrl = "https://www.linkedin.com/in/m7mdashraf/"
 const linkedInPostUrl =
@@ -18,12 +19,13 @@ export default function MohamedYousufPage() {
         <div className="container px-4 md:px-6">
           <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12 items-start">
             <ScrollAnimation className="space-y-4">
-              <div className="aspect-square overflow-hidden rounded-xl border border-white/10 bg-jefferson-deepBlue/40">
-                <img
-                  src={linkedInProfileImage}
+              <div className="flex justify-center lg:justify-start">
+                <FaceTracker
+                  blobFaceId="MY_1"
+                  fallbackImage={linkedInProfileImage}
                   alt="Dr. Mohamed Yousuf"
-                  className="h-full w-full object-cover"
-                  referrerPolicy="no-referrer"
+                  size={280}
+                  className="rounded-xl border border-white/10 bg-jefferson-deepBlue/40"
                 />
               </div>
               <div className="space-y-2">

@@ -72,19 +72,20 @@ export function useGazeTracking(containerRef: RefObject<HTMLElement>, basePath: 
       if (!e.touches[0]) return
       updateFromPoint(e.touches[0].clientX, e.touches[0].clientY)
     }
-    const handleLeave = () => setCurrentImage(centerImage)
+    const handleWindowLeave = () => setCurrentImage(centerImage)
+    const handleTouchEnd = () => setCurrentImage(centerImage)
 
-    container.addEventListener("mousemove", handleMouseMove)
-    container.addEventListener("touchmove", handleTouchMove, { passive: true })
-    container.addEventListener("mouseleave", handleLeave)
-    container.addEventListener("touchend", handleLeave)
+    window.addEventListener("mousemove", handleMouseMove)
+    window.addEventListener("touchmove", handleTouchMove, { passive: true })
+    window.addEventListener("mouseleave", handleWindowLeave)
+    window.addEventListener("touchend", handleTouchEnd)
 
     return () => {
       mounted = false
-      container.removeEventListener("mousemove", handleMouseMove)
-      container.removeEventListener("touchmove", handleTouchMove)
-      container.removeEventListener("mouseleave", handleLeave)
-      container.removeEventListener("touchend", handleLeave)
+      window.removeEventListener("mousemove", handleMouseMove)
+      window.removeEventListener("touchmove", handleTouchMove)
+      window.removeEventListener("mouseleave", handleWindowLeave)
+      window.removeEventListener("touchend", handleTouchEnd)
     }
   }, [containerRef, basePath])
 
