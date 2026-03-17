@@ -14,13 +14,15 @@ export default function AtharvaPeshkarPage() {
           <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:gap-12 items-start">
             <ScrollAnimation className="space-y-4">
               <div className="flex justify-center lg:justify-start">
-                <FaceTracker
-                  blobFaceId="AP_1"
-                  fallbackImage={profileImageUrl}
-                  alt="Atharva Peshkar"
-                  size={280}
-                  className="rounded-xl border border-white/10 bg-jefferson-deepBlue/40"
-                />
+                <div className="h-[280px] w-[280px] overflow-hidden rounded-full ring-4 ring-white shadow-xl">
+                  <FaceTracker
+                    blobFaceId="AP_1"
+                    fallbackImage={profileImageUrl}
+                    alt="Atharva Peshkar"
+                    size={280}
+                    className="rounded-full"
+                  />
+                </div>
               </div>
             </ScrollAnimation>
 
